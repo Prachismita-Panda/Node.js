@@ -13,7 +13,6 @@ connectDB();
 const app = express();
 
 //middleware
-
 app.use(morgan("dev"));
 app.use(cors());
  
