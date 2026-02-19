@@ -1,0 +1,32 @@
+ [
+  {
+    "id": 1,
+    "rollno": "CS101",
+    "name": "Aarav Sharma",
+    "course": "B.Tech Computer Science"
+  },
+  {
+    "id": 2,
+    "rollno": "EC102",
+    "name": "Priya Patel",
+    "course": "B.Tech Electronics"
+  },
+  {
+    "id": 3,
+    "rollno": "ME103",
+    "name": "Rohan Das",
+    "course": "B.Tech Mechanical"
+  },
+  {
+    "id": 4,
+    "rollno": "BA104",
+    "name": "Sneha Kapoor",
+    "course": "BBA"
+  },
+  {
+    "id": 5,
+    "rollno": "BC105",
+    "name": "Vikram Singh",
+    "course": "B.Com"
+  }
+]

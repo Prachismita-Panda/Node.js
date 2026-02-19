@@ -1,0 +1,17 @@
+
+#landing{
+    text-align: center;
+    box-sizing: border-box;
+    padding:100px;
+    border: 1px solid #cce7d0;
+    margin: 100px 100px;
+    border-radius: 30px;
+    color: rgba(rgb(159, 240, 127), green, blue, alpha);
+}
+
+#button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0px 500px;
+}

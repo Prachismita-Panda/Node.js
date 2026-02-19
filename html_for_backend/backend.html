@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./backend.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Student Registration</h2>
+
+        <form>
+
+            <label>Name</label>
+            <input type="text">
+
+            <label>Email</label>
+            <input type="email">
+
+            <label>Password</label>
+            <input type="password">
+
+            <label>Gender</label><br>
+            <input class="inline" type="radio" name="g"> Male
+            <input class="inline" type="radio" name="g"> Female
+            <br><br>
+
+            <label>Skills</label><br>
+            <input class="inline" type="checkbox"> HTML
+            <input class="inline" type="checkbox"> CSS
+            <input class="inline" type="checkbox"> JS
+            <br><br>
+
+            <label>City</label>
+            <select>
+            <option>Bargarh</option>
+            <option>Sambalpur</option>
+            <option>Cuttack</option>
+            </select>
+
+            <label>About You</label>
+            <textarea></textarea>
+
+            <button>Register</button>
+
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(e){
+
+        e.preventDefault(); // stop refresh
+
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value.trim();
+        let city = document.getElementById("city").value;
+
+        let gender = document.querySelector('input[name="gender"]:checked');
+        let skills = document.querySelectorAll('input[name="skill"]:checked');
+
+        let error = document.getElementById("error");
+        let success = document.getElementById("success");
+
+        error.textContent = "";
+        success.textContent = "";
+
+        // Name validation
+        if(name === ""){
+            error.textContent = "Please enter your name";
+            return;
+        }
+
+        // Email validation
+        let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if(!email.match(emailPattern)){
+            error.textContent = "Enter valid email";
+            return;
+        }
+
+        // Password validation
+        if(password.length < 6){
+            error.textContent = "Password must be at least 6 characters";
+            return;
+        }
+
+        // Gender
+        if(!gender){
+            error.textContent = "Select gender";
+            return;
+        }
+
+        // Skills
+        if(skills.length === 0){
+            error.textContent = "Select at least one skill";
+            return;
+        }
+
+        // City
+        if(city === ""){
+            error.textContent = "Select city";
+            return;
+        }
+
+        success.textContent = "Registration Successful 🎉";
+
+        });
+    </script>
+</body>
+</html>
+
+
+
+
