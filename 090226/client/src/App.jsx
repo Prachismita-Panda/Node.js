@@ -1,12 +1,13 @@
 import './App.css'
-import Landing from './pages/Home/Landing'
+import Register from './Auth/register'
+
 
 function App() {
 
   return (
 
     <>
-      <Landing/>
+      <Register/>
     </>
     
 
