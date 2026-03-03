@@ -1,14 +1,14 @@
-const userModel = require("../model/userModel");
+const userModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
-const registerController = async(req,res) =>{
-   
-    try {
-         const{username,email,password} = req.body;
+const registerController = async(req,res)=>{
+    try{
+        const{username,email,password} = req.body;
 
-        //validation
-        if(!username || !email ||  !password){
-            return( 
+        // validation
+
+        if(!email  || !username || !password){
+            return(
                 res.status(500).send({
                     success:false,
                     message:"All fields are compulsory"
@@ -17,13 +17,14 @@ const registerController = async(req,res) =>{
         }
 
         const existingUser = await userModel.findOne({email});
+
         if(existingUser){
             return(
                 res.status(500).send({
                     success:false,
                     message:"User already registered"
                 })
-            );
+            )
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -36,25 +37,22 @@ const registerController = async(req,res) =>{
             success:true,
             message:"Record added successfully",
             newUser
-        });
-    } catch (error) {
-         res.status(500).send({
+        })
+    }catch(error){
+        res.status(500).send({
             status:false,
-            message:"register API",
+            message:"Register API",
             error
         })
     }
 }
 
-//login | post
 const loginController = async(req,res)=>{
     try{
+
         const {email,password} = req.body;
 
-        console.log(email);
-        console.log(password);
-
-        //validation
+        // validation
 
         if(!email || !password){
             return res.status(500).send({
@@ -63,27 +61,25 @@ const loginController = async(req,res)=>{
             });
         }
 
-        const existingUser=await userModel.findOne({email});
+        const existingUser = await userModel.findOne({email,password:hashedPassword})
 
         if(!existingUser){
             return res.status(500).send({
                 success:false,
-                message:"Invalid  Credentials"
-            });
+                message:"Invalid Credentials"
+            })
         }
 
         const result = await bcrypt.compare(password,existingUser.password)
-        console.log(result)
+        console.log(result);
+
         if(!result){
-            return(
-                
-                res.status(500).send({
+            return res.status(500).send({
                 success:false,
-                message:"Invalid Credentials"
-                })
-            )
-              
+                message:"Invalid credentials"
+            })
         }
+
         const token = await JWT.sign({id:existingUser._id},process.env.JWT_SECRET,
         {expiresIn:"1d"});
         res.status(200).send({
@@ -95,13 +91,12 @@ const loginController = async(req,res)=>{
                 token
             }
         })
-
     }catch(error){
          res.status(500).send({
             status:false,
             message:"Login API",
             error
-        })
+         })
     }
 }
 
