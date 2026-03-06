@@ -61,7 +61,7 @@ const loginController = async(req,res)=>{
             });
         }
 
-        const existingUser = await userModel.findOne({email,password:hashedPassword})
+        const existingUser = await userModel.findOne({email})
 
         if(!existingUser){
             return res.status(500).send({
