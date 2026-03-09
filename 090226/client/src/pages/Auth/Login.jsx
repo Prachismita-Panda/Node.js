@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Login.css'
 
 const Login = () => {
 
@@ -20,18 +21,20 @@ const Login = () => {
   return (
    
    
-       <div>
+       <div className='login-container'>
            
-           <div>
+           <div className='login-card'>
                <input type="email" value={mail} placeholder='email'  onChange={(e)=>(setMail(e.target.value))} /> <br />
                <input type="password" value={pass} placeholder='password' onChange={(e)=>(setPass(e.target.value))}/>    
                
+
+                <div className='btn-box'>
+                    <button onClick={showData}>Login</button>
+                    <button onClick={clearData}>Clear</button>    
+                </div>
            </div>
    
-           <div>
-               <button onClick={showData}>Login</button>
-               <button onClick={clearData}>Clear</button>    
-           </div>
+         
    
        </div>
   )
