@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import './Register.css'
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 const Register = () => {
@@ -42,10 +43,13 @@ const Register = () => {
             <input type="email" value={email} placeholder='Enter Email'  onChange={(e)=>(setEmail(e.target.value))} /> <br />
             <input type="password" value={password} placeholder='Enter password' onChange={(e)=>(setPass(e.target.value))}/>    
             
+            
+            <h6>Already have an account? <Link to="/login">Login</Link></h6>  
 
             <div  className='btn-group'>
                 <button onClick={showData}>Register</button>
-                <button onClick={clearData}>Clear</button>    
+                <button onClick={clearData}>Clear</button>  
+
             </div>
         </div>
 

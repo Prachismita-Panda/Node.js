@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 import './Login.css'
 
 const Login = () => {
@@ -39,6 +40,7 @@ const Login = () => {
                <input type="email" value={email} placeholder='Enter Email'  onChange={(e)=>(setMail(e.target.value))} /> <br />
                <input type="password" value={password} placeholder='Enter Password' onChange={(e)=>(setPass(e.target.value))}/>    
                
+                <h6>Don't have an account? <Link to="/register">Register</Link></h6> 
 
                 <div className='btn-box'>
                     <button onClick={showData}>Login</button>
