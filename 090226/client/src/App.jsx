@@ -1,7 +1,6 @@
 import React from 'react'
-import About from './pages/About/About'
 import Login from './pages/Auth/Login'
-import Landing from './pages/Landing/Landing'
+import  { Toaster } from 'react-hot-toast';
 import Register from './pages/Auth/Register'
 
 const App = () => {
@@ -9,6 +8,7 @@ const App = () => {
     <div>
       <Register/>
       <Login/>
+      <Toaster/>
     </div>
   )
 }

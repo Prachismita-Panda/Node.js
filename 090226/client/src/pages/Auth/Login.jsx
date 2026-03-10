@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios'
 import './Login.css'
 
 const Login = () => {
 
-       const [mail,setMail] = useState();
-       const [pass,setPass] = useState();
+       const [email,setMail] = useState();
+       const [password,setPass] = useState();
    
    
-      function showData(){
-           console.log(mail);
-           console.log(pass); 
+        const showData = async ()=>
+        {
+  
+            try {
+                const data = { email, password}
+                const res = await axios.post("http://localhost:8080/api/v1/login", data);
+                toast.success(res.data.message)
+                console.log(res.data) 
+            }catch (error) {
+                toast.error("Something went wrong");
+                console.log(error)
+            }
        }
    
        function clearData(){
@@ -24,8 +35,9 @@ const Login = () => {
        <div className='login-container'>
            
            <div className='login-card'>
-               <input type="email" value={mail} placeholder='email'  onChange={(e)=>(setMail(e.target.value))} /> <br />
-               <input type="password" value={pass} placeholder='password' onChange={(e)=>(setPass(e.target.value))}/>    
+                <h1>Login Page</h1>
+               <input type="email" value={email} placeholder='Enter Email'  onChange={(e)=>(setMail(e.target.value))} /> <br />
+               <input type="password" value={password} placeholder='Enter Password' onChange={(e)=>(setPass(e.target.value))}/>    
                
 
                 <div className='btn-box'>
