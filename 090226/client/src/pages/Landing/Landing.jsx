@@ -1,10 +1,15 @@
 import React from 'react'
 import './Landing.css'
 import { Link } from 'react-router-dom'
+import Navbar from '../Layout/Navbar'
 
 const Landing = () => {
   return (
     <>
+
+
+      <Navbar/>
+      
       <div id='container'>
 
         <div id='reg-box'>

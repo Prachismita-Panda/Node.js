@@ -10,6 +10,7 @@ import About from './pages/About/About'
 
 
 
+
 const App = () => {
   return (
     <div>
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/todo' element={<TodoList/>} />
         <Route path='/landing' element={<Landing/>} />
         <Route path='/about' element={<About/>} />
+       
         
       </Routes>
 
