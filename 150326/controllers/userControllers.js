@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+const JWT = require("jsonwebtoken");
 
 const registerController = async (req,res)=>{
     try {
@@ -73,10 +74,17 @@ const loginController = async(req,res)=>{
             })
         }
 
+        const token = await JWT.sign({id:existingUser.id},process.env.JWR_SECRET,{expiresIn:"1d"});
+
         res.status(200).send({
             success:true,
             message:"Login Successful",
-            existingUser
+            user:{
+                username:existingUser.username,
+                email:existingUser.email,
+                token
+            }
+            
         })
     } catch (error) {
         res.status(200).send({
