@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const Register = () => {
 
-    const [username,setName] = useState("");
+    const [username,setName] = useState  ("");
     const [email,setEmail] = useState("");
     const [password,setPass] = useState("");
 
