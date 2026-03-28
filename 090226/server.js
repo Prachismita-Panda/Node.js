@@ -17,8 +17,8 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
-app.use("/api/v1",router);
-app.use("/api/v1",require('./routes/todoRoutes'))
+app.use("/api/v1/user",router);
+app.use("/api/v1/todo",require('./routes/todoRoutes'))
 
 const PORT = process.env.PORT || 8080;
 

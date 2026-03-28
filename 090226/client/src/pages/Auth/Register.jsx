@@ -1,23 +1,32 @@
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import './Register.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import AuthServices from '../../services/AuthService';
+
+
 
 const Register = () => {
 
     const [username,setName] = useState  ("");
     const [email,setEmail] = useState("");
     const [password,setPass] = useState("");
+    const navigate = useNavigate();
 
-
+    
+    
   
     const showData = async () =>{
         try {
+            
             const data = {username, email, password}
-            const res = await axios.post("http://localhost:8080/api/v1/register", data);
+            const res = await AuthServices.registerAuth(data)
             toast.success(res.data.message)
             console.log(res.data) 
+            // navigate('/todo');
+            navigate('/login')
+            
         } catch (error) {
             toast.error("Something went wrong");
             console.log(error)
@@ -31,6 +40,7 @@ const Register = () => {
         setPass("");
     }
 
+    
 
   return (
 

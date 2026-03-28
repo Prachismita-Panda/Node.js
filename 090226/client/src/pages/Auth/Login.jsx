@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import './Login.css'
+import {getErrorMessage} from '../../utils/ErrorMessage';
+import AuthServices from '../../services/AuthService';
 
 const Login = () => {
 
        const [email,setMail] = useState();
        const [password,setPass] = useState();
+       const navigate = useNavigate();
    
    
         const showData = async ()=>
@@ -15,12 +18,17 @@ const Login = () => {
   
             try {
                 const data = { email, password}
-                const res = await axios.post("http://localhost:8080/api/v1/login", data);
+                const res = await AuthServices.loginAuth(data)
                 toast.success(res.data.message)
+                localStorage.setItem("todoapp",JSON.stringify(res.data))
                 console.log(res.data) 
+                navigate('/'); 
             }catch (error) {
-                toast.error("Something went wrong");
+                
+                let msg =  getErrorMessage(error);
                 console.log(error)
+                toast.error(msg);
+                
             }
        }
    
